@@ -53,7 +53,10 @@ function ($scope, $stateParams, $cordovaCamera, $http) {
 		$http({
 			method: 'POST',
 			url: 'http://bizimkuzu.com/api/hayvan-kayit',
-			data: $scope.yeni
+			data: $scope.yeni,
+			headers: {
+				"Content-Type": "application/json"				
+			}
 		})
 		.then(function (success) {
 			$scope.islemYapiliyor['yeniKayitKaydetClick'] = false;
@@ -65,7 +68,7 @@ function ($scope, $stateParams, $cordovaCamera, $http) {
 			}
 		}, function (error) {
 			$scope.islemYapiliyor['yeniKayitKaydetClick'] = false;
-			alert(JSON.stringify(error));
+			alert('Kayıt edilemedi. Tekrar deneyin.');
 			console.log(error);
 		});		
 	}
@@ -95,7 +98,10 @@ function ($scope, $stateParams, $http) {
 		$scope.islemYapiliyor['hayvanListesi'] = true;
 		$http({
 			method: 'GET',
-			url: 'http://bizimkuzu.com/api/hayvan-listesi'		
+			url: 'http://bizimkuzu.com/api/hayvan-listesi',
+			headers: {
+				"Content-Type": "application/json"				
+			}			
 		})
 		.then(function (success) {		
 			$scope.islemYapiliyor['hayvanListesi'] = false;
