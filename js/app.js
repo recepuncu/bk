@@ -7,10 +7,12 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('app', ['ionic', 'ngCordova', 'app.controllers', 'app.routes', 'app.directives','app.services',])
 
-.config(function($ionicConfigProvider, $sceDelegateProvider){
+.config(function($ionicConfigProvider, $sceDelegateProvider, $httpProvider){
 
   $sceDelegateProvider.resourceUrlWhitelist([ 'self','*://www.youtube.com/**', '*://player.vimeo.com/video/**']);
 
+  $httpProvider.defaults.useXDomain = true;
+  
   if(!ionic.Platform.isIOS())$ionicConfigProvider.scrolling.jsScrolling(false);
   
 })

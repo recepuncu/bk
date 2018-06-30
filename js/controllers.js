@@ -31,10 +31,10 @@ function ($scope, $stateParams, $cordovaCamera, $http, $ionicPlatform) {
 			'irkID': '',
 			'dogumTarihi': '',
 			'kilo': '',
-			'fotograf': ''		
+			'fotograf': '',
+			'cihazID': device.uuid || device.platform
 		};
 	
-		$scope.cihazID = device.uuid || device.platform;
 		$scope.yeniKayitFotografCek = function () {
 			var options = {
 				quality: 75,
@@ -56,8 +56,7 @@ function ($scope, $stateParams, $cordovaCamera, $http, $ionicPlatform) {
 			});
 		};
 	
-		$scope.yeniKayitKaydetClick = function() {		
-			$scope.yeni.cihazID = $scope.cihazID;
+		$scope.yeniKayitKaydetClick = function() {
 			$scope.islemYapiliyor['yeniKayitKaydetClick'] = true;
 			$http({
 				method: 'POST',
