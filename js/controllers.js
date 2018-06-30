@@ -41,7 +41,7 @@ function ($scope, $stateParams, $cordovaCamera, $http) {
 			$cordovaCamera.getPicture(options).then(function (imageData) {
 				$scope.imgURI = "data:image/jpeg;base64," + imageData;
 				$scope.yeni.cihazID = $scope.cihazID;
-				$scope.yeni.fotograf = $scope.imgURI;
+				$scope.yeni.fotograf = encodeURI(imageData);
 			}, function (err) {
 				// An error occured. Show a message to the user
 			});
@@ -56,7 +56,7 @@ function ($scope, $stateParams, $cordovaCamera, $http) {
 			url: 'http://bizimkuzu.com/api/hayvan-kayit',
 			data: $scope.yeni,
 			headers: {
-				"Content-Type": "application/json"				
+				"Content-Type": "application/json"					
 			}
 		})
 		.then(function (success) {
