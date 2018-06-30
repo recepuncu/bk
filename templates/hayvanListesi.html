@@ -1,6 +1,7 @@
 <ion-view title="Hayvan Listesi" hide-back-button="true" id="page2">	
 	<ion-content padding="true" class="has-header">
 		<ion-refresher on-refresh="hayvanListesiYenileClick()"></ion-refresher>
+		<ion-spinner ng-show="islemYapiliyor['hayvanListesi']"></ion-spinner>
 		<ion-list id="hayvanListesi-list2">
 
 			<ion-item ng-repeat="hayvan in data.hayvanListesi" class="item-thumbnail-left">
