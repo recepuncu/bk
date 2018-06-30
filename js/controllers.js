@@ -27,19 +27,20 @@ function ($scope, $stateParams, $cordovaCamera, $http) {
 		
 		$scope.yeniKayitFotografCek = function () {
 			var options = {
-				quality: 100,
+				quality: 60,
 				destinationType: Camera.DestinationType.DATA_URL,
 				sourceType: Camera.PictureSourceType.CAMERA,
 				allowEdit: false,
 				encodingType: Camera.EncodingType.JPEG,
-				targetWidth: 30,
-				targetHeight: 30,
+				targetWidth: 1024,
+				targetHeight: 1024,
 				popoverOptions: CameraPopoverOptions,
 				correctOrientation: true,
 				saveToPhotoAlbum: false
 			};
 			$cordovaCamera.getPicture(options).then(function (imageData) {
 				$scope.imgURI = "data:image/jpeg;base64," + imageData;
+				$scope.yeni.cihazID = $scope.cihazID;
 				$scope.yeni.fotograf = $scope.imgURI;
 			}, function (err) {
 				// An error occured. Show a message to the user
