@@ -53,7 +53,7 @@ function ($scope, $stateParams, $cordovaCamera, $http) {
 		$http({
 			method: 'POST',
 			url: 'http://bizimkuzu.com/api/hayvan-kayit',
-			data: JSON.stringify($scope.yeni)
+			data: $scope.yeni
 		})
 		.then(function (success) {
 			$scope.islemYapiliyor['yeniKayitKaydetClick'] = false;
@@ -65,7 +65,7 @@ function ($scope, $stateParams, $cordovaCamera, $http) {
 			}
 		}, function (error) {
 			$scope.islemYapiliyor['yeniKayitKaydetClick'] = false;
-			alert(JSON.stringify($scope.yeni));
+			alert(error);
 			console.log(error);
 		});		
 	}
