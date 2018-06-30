@@ -2,26 +2,26 @@ angular.module('app.controllers', [])
   
 .controller('hayvanKayitCtrl', ['$scope', '$stateParams', '$cordovaCamera', '$http', '$ionicPlatform',
 function ($scope, $stateParams, $cordovaCamera, $http, $ionicPlatform) {
-
-	$scope.islemYapiliyor = [];
-
-	$scope.irklar = [
-		{ 'irkID': 1, 'irkAdi': 'Merinos'},
-		{ 'irkID': 2, 'irkAdi': 'Kara Koyun'},
-	];
-	
-	$scope.cihazID = 0;
-	
-	$scope.yeni = {
-		'kupeNo': '',
-		'anneKupeNo': '',
-		'irkID': '',
-		'dogumTarihi': '',
-		'kilo': '',
-		'fotograf': ''		
-	};	
 	
 	$ionicPlatform.ready(function() {	
+	
+		$scope.islemYapiliyor = [];
+
+		$scope.irklar = [
+			{ 'irkID': 1, 'irkAdi': 'Merinos'},
+			{ 'irkID': 2, 'irkAdi': 'Kara Koyun'},
+		];
+		
+		$scope.cihazID = 0;
+		
+		$scope.yeni = {
+			'kupeNo': '',
+			'anneKupeNo': '',
+			'irkID': '',
+			'dogumTarihi': '',
+			'kilo': '',
+			'fotograf': ''		
+		};
 	
 		$scope.cihazID = device.uuid || device.platform;
 		$scope.yeniKayitFotografCek = function () {
@@ -44,47 +44,47 @@ function ($scope, $stateParams, $cordovaCamera, $http, $ionicPlatform) {
 				alert(err);
 			});
 		};
-		
-	});
 	
-	$scope.yeniKayitKaydetClick = function() {		
-		$scope.yeni.cihazID = $scope.cihazID;
-		$scope.islemYapiliyor['yeniKayitKaydetClick'] = true;
-		$http({
-			method: 'POST',
-			url: 'http://bizimkuzu.com/api/hayvan-kayit',
-			data: $scope.yeni,
-			headers: {
-				"Content-Type": "application/json"				
-			}
-		})
-		.then(function (success) {
-			$scope.islemYapiliyor['yeniKayitKaydetClick'] = false;
-			if (success.data.result == 'success') {
-				alert('Kayıt başarılı.');
-				$scope.yeniKayitVazgecClick();
-			} else {
+		$scope.yeniKayitKaydetClick = function() {		
+			$scope.yeni.cihazID = $scope.cihazID;
+			$scope.islemYapiliyor['yeniKayitKaydetClick'] = true;
+			$http({
+				method: 'POST',
+				url: 'http://bizimkuzu.com/api/hayvan-kayit',
+				data: $scope.yeni,
+				headers: {
+					"Content-Type": "application/json"				
+				}
+			})
+			.then(function (success) {
+				$scope.islemYapiliyor['yeniKayitKaydetClick'] = false;
+				if (success.data.result == 'success') {
+					alert('Kayıt başarılı.');
+					$scope.yeniKayitVazgecClick();
+				} else {
+					alert('Kayıt edilemedi. Tekrar deneyin.');
+				}
+			}, function (error) {
+				$scope.islemYapiliyor['yeniKayitKaydetClick'] = false;
 				alert('Kayıt edilemedi. Tekrar deneyin.');
-			}
-		}, function (error) {
-			$scope.islemYapiliyor['yeniKayitKaydetClick'] = false;
-			alert('Kayıt edilemedi. Tekrar deneyin.');
-			console.log(error);
-		});		
-	}
+				console.log(error);
+			});		
+		}
+		
+		$scope.yeniKayitVazgecClick = function() {
+			$scope.yeni = {
+				'kupeNo': '',
+				'anneKupeNo': '',
+				'irkID': '',
+				'dogumTarihi': '',
+				'kilo': '',
+				'fotograf': '',
+				'cihazID': $scope.cihazID
+			};
+			$scope.imgURI = null;
+		}
 	
-	$scope.yeniKayitVazgecClick = function() {
-		$scope.yeni = {
-			'kupeNo': '',
-			'anneKupeNo': '',
-			'irkID': '',
-			'dogumTarihi': '',
-			'kilo': '',
-			'fotograf': '',
-			'cihazID': $scope.cihazID
-		};
-		$scope.imgURI = null;
-	}
+	});
 
 }])
    
