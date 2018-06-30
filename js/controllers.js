@@ -32,8 +32,8 @@ function ($scope, $stateParams, $cordovaCamera, $http) {
 				sourceType: Camera.PictureSourceType.CAMERA,
 				allowEdit: false,
 				encodingType: Camera.EncodingType.JPEG,
-				targetWidth: 350,
-				targetHeight: 350,
+				targetWidth: 30,
+				targetHeight: 30,
 				popoverOptions: CameraPopoverOptions,
 				correctOrientation: true,
 				saveToPhotoAlbum: false
