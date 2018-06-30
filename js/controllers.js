@@ -20,32 +20,29 @@ function ($scope, $stateParams, $cordovaCamera, $http) {
 		'kilo': '',
 		'fotograf': ''		
 	};	
+		
+	$scope.cihazID = device.uuid || device.platform;
 	
-	document.addEventListener("deviceready", function () {
-		
-		$scope.cihazID = device.uuid || device.platform;
-		
-		$scope.yeniKayitFotografCek = function () {
-			var options = {
-				quality: 60,
-				destinationType : 0,				
-				allowEdit : true,
-				targetWidth: 300,
-				targetHeight: 300,								
-				destinationType: Camera.DestinationType.DATA_URL,
-				sourceType: Camera.PictureSourceType.CAMERA,				
-				encodingType: Camera.EncodingType.JPEG,				
-				correctOrientation: true,
-				saveToPhotoAlbum: false
-			};
-			$cordovaCamera.getPicture(options).then(function (imageData) {
-				$scope.imgURI = "data:image/jpeg;base64," + imageData;				
-				$scope.yeni.fotograf = $scope.imgURI;
-			}, function (err) {
-				alert(err);
-			});
+	$scope.yeniKayitFotografCek = function () {
+		var options = {
+			quality: 75,
+			destinationType : 0,				
+			allowEdit : true,
+			targetWidth: 1024,
+			targetHeight: 1024,								
+			destinationType: Camera.DestinationType.DATA_URL,
+			sourceType: Camera.PictureSourceType.CAMERA,				
+			encodingType: Camera.EncodingType.JPEG,				
+			correctOrientation: true,
+			saveToPhotoAlbum: false
 		};
-	}, false);
+		$cordovaCamera.getPicture(options).then(function (imageData) {
+			$scope.imgURI = "data:image/jpeg;base64," + imageData;				
+			$scope.yeni.fotograf = $scope.imgURI;
+		}, function (err) {
+			alert(err);
+		});
+	};
 	
 	$scope.yeniKayitKaydetClick = function() {		
 		$scope.yeni.cihazID = $scope.cihazID;
