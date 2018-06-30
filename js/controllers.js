@@ -28,21 +28,21 @@ function ($scope, $stateParams, $cordovaCamera, $http) {
 		$scope.yeniKayitFotografCek = function () {
 			var options = {
 				quality: 60,
+				destinationType : 0,				
+				allowEdit : true,
+				targetWidth: 300,
+				targetHeight: 300,								
 				destinationType: Camera.DestinationType.DATA_URL,
-				sourceType: Camera.PictureSourceType.CAMERA,
-				allowEdit: false,
-				encodingType: Camera.EncodingType.JPEG,
-				targetWidth: 512,
-				targetHeight: 512,
-				popoverOptions: CameraPopoverOptions,
+				sourceType: Camera.PictureSourceType.CAMERA,				
+				encodingType: Camera.EncodingType.JPEG,				
 				correctOrientation: true,
 				saveToPhotoAlbum: false
 			};
 			$cordovaCamera.getPicture(options).then(function (imageData) {
 				$scope.imgURI = "data:image/jpeg;base64," + imageData;				
-				$scope.yeni.fotograf = imageData;
+				$scope.yeni.fotograf = $scope.imgURI;
 			}, function (err) {
-				// An error occured. Show a message to the user
+				alert(err);
 			});
 		};
 	}, false);
