@@ -1,0 +1,56 @@
+<ion-view title="Hayvan Kayıt" hide-back-button="true" id="page4">
+  <ion-content padding="true" class="has-header">
+  
+    <div class="list">
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Küpe Numarası</span>
+        <input ng-model="yeni.kupeNo" type="text" placeholder="Küpe numarasını buraya girin." />
+      </label>
+    </div>
+	
+	<div class="list">
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Anne Küpe Numarası</span>
+        <input ng-model="yeni.anneKupeNo" type="text" placeholder="Anne küpe numarasını buraya girin." />
+      </label>
+    </div>
+	
+	<div class="list">
+      <label class="item item-select">
+        <span class="input-label">Irk Seçiniz</span>
+        <select ng-model="yeni.irkID" ng-options="irk.irkID as irk.irkAdi for irk in irklar">          
+        </select>
+      </label>
+    </div>
+	
+	<div class="list">
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Doğum Tarihi</span>
+        <input ng-model="yeni.dogumTarihi" type="text" placeholder="31.12.2018 şeklinde girin." />
+      </label>
+    </div>
+	
+	<div class="list">
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Kilo</span>
+        <input ng-model="yeni.kilo" type="number" placeholder="Kilo bilgisini buraya girin." />
+      </label>
+    </div>
+    
+	<div>
+		<button ng-click="yeniKayitFotografCek()" class="button button-calm button-block">Fotoğraf Çek</button>
+	</div>
+	<div style="margin: 0px; background-color: rgb(232, 235, 239); text-align: center;">
+	  <input ng-model="yeni.fotograf" type="hidden" />
+	  <img src="img/fotograf-yok.png" ng-src="{{imgURI}}" width="100%" height="auto" style="display: block; margin-left: auto; margin-right: auto;" />
+    </div>		
+	
+    <div id="hayvanKayit-button-bar1" class="button-bar">
+      <button ng-click="yeniKayitKaydetClick()" ng-disabled="islemYapiliyor['yeniKayitKaydetClick']" class="button button-balanced button-block">
+		Kaydet
+	  </button>
+      <button ng-click="yeniKayitVazgecClick()" class="button button-assertive button-block">Vazgeç</button>
+    </div>
+	
+  </ion-content>
+</ion-view>

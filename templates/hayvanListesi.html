@@ -1,0 +1,23 @@
+<ion-view title="Hayvan Listesi" hide-back-button="true" id="page2">	
+	<ion-content padding="true" class="has-header">
+		<ion-refresher on-refresh="hayvanListesiYenileClick()"></ion-refresher>
+		<ion-spinner ng-show="islemYapiliyor['hayvanListesi']"></ion-spinner>
+		<ion-list id="hayvanListesi-list2">
+
+			<ion-item ng-repeat="hayvan in data.hayvanListesi" class="item-thumbnail-left">
+				<img ng-src="http://bizimkuzu.com/api/{{hayvan.fotograf}}" />
+				<h2>
+					<strong>Küpe No:</strong> {{hayvan.kupeNo}}</h2>
+				<p>
+					<span style="display: block;">
+						<strong>Anne:</strong> {{hayvan.anneKupeNo}}</span>
+					<span style="display: block;">
+						<strong>Doğum:</strong> {{hayvan.dogumTarihi}}</span>
+					<span style="display: block;">
+						<strong>Kilo:</strong> {{hayvan.kilo}}</span>
+				</p>
+			</ion-item>      
+
+		</ion-list>
+	</ion-content>
+</ion-view>
