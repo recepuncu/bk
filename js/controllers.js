@@ -65,7 +65,7 @@ function ($scope, $stateParams, $cordovaCamera, $http) {
 			}
 		}, function (error) {
 			$scope.islemYapiliyor['yeniKayitKaydetClick'] = false;
-			alert('Kayıt edilemedi. Tekrar deneyin.');
+			alert(JSON.stringify($scope.yeni));
 			console.log(error);
 		});		
 	}
