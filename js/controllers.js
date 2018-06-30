@@ -1,7 +1,7 @@
 angular.module('app.controllers', [])
   
-.controller('hayvanKayitCtrl', ['$scope', '$stateParams', '$cordovaCamera', '$http',
-function ($scope, $stateParams, $cordovaCamera, $http) {
+.controller('hayvanKayitCtrl', ['$scope', '$stateParams', '$cordovaCamera', '$http', '$ionicPlatform',
+function ($scope, $stateParams, $cordovaCamera, $http, $ionicPlatform) {
 
 	$scope.islemYapiliyor = [];
 
@@ -20,29 +20,32 @@ function ($scope, $stateParams, $cordovaCamera, $http) {
 		'kilo': '',
 		'fotograf': ''		
 	};	
-		
-	$scope.cihazID = device.uuid || device.platform;
 	
-	$scope.yeniKayitFotografCek = function () {
-		var options = {
-			quality: 75,
-			destinationType : 0,				
-			allowEdit : true,
-			targetWidth: 1024,
-			targetHeight: 1024,								
-			destinationType: Camera.DestinationType.DATA_URL,
-			sourceType: Camera.PictureSourceType.CAMERA,				
-			encodingType: Camera.EncodingType.JPEG,				
-			correctOrientation: true,
-			saveToPhotoAlbum: false
+	$ionicPlatform.ready(function() {	
+	
+		$scope.cihazID = device.uuid || device.platform;
+		$scope.yeniKayitFotografCek = function () {
+			var options = {
+				quality: 75,
+				destinationType : 0,				
+				allowEdit : true,
+				targetWidth: 1024,
+				targetHeight: 1024,								
+				destinationType: Camera.DestinationType.DATA_URL,
+				sourceType: Camera.PictureSourceType.CAMERA,				
+				encodingType: Camera.EncodingType.JPEG,				
+				correctOrientation: true,
+				saveToPhotoAlbum: false
+			};
+			$cordovaCamera.getPicture(options).then(function (imageData) {
+				$scope.imgURI = "data:image/jpeg;base64," + imageData;				
+				$scope.yeni.fotograf = $scope.imgURI;
+			}, function (err) {
+				alert(err);
+			});
 		};
-		$cordovaCamera.getPicture(options).then(function (imageData) {
-			$scope.imgURI = "data:image/jpeg;base64," + imageData;				
-			$scope.yeni.fotograf = $scope.imgURI;
-		}, function (err) {
-			alert(err);
-		});
-	};
+		
+	});
 	
 	$scope.yeniKayitKaydetClick = function() {		
 		$scope.yeni.cihazID = $scope.cihazID;
@@ -52,7 +55,7 @@ function ($scope, $stateParams, $cordovaCamera, $http) {
 			url: 'http://bizimkuzu.com/api/hayvan-kayit',
 			data: $scope.yeni,
 			headers: {
-				"Content-Type": "application/json"					
+				"Content-Type": "application/json"				
 			}
 		})
 		.then(function (success) {
