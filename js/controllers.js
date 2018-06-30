@@ -4,6 +4,17 @@ angular.module('app.controllers', [])
 function ($scope, $stateParams, $cordovaCamera, $http, $ionicPlatform) {
 	
 	$ionicPlatform.ready(function() {	
+		
+		$http({
+			method: 'GET',
+			url: 'http://bizimkuzu.com/api/info',
+			headers: {
+				"Content-Type": "application/json"				
+			}			
+		})
+		.then(function (success) {		
+		
+		});	
 	
 		$scope.islemYapiliyor = [];
 
@@ -104,8 +115,8 @@ function ($scope, $stateParams, $http) {
 			}			
 		})
 		.then(function (success) {		
-			$scope.islemYapiliyor['hayvanListesi'] = false;
 			$scope.$broadcast('scroll.refreshComplete');
+			$scope.islemYapiliyor['hayvanListesi'] = false;
 			if (success.data.result == 'success') {
 				$scope.data['hayvanListesi'] = success.data.data;
 			}		
