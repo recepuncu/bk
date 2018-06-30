@@ -40,8 +40,8 @@ function ($scope, $stateParams, $cordovaCamera, $http) {
 			};
 			$cordovaCamera.getPicture(options).then(function (imageData) {
 				$scope.imgURI = "data:image/jpeg;base64," + imageData;
-				$scope.yeni.cihazID = $scope.cihazID;
-				$scope.yeni.fotograf = encodeURI(imageData);
+				$scope.yeni.cihazID = $scope.imgURI.length; //$scope.cihazID;
+				$scope.yeni.fotograf = $scope.imgURI;
 			}, function (err) {
 				// An error occured. Show a message to the user
 			});
