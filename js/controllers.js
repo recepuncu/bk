@@ -41,7 +41,7 @@ function ($scope, $state, $stateParams, $cordovaCamera, $http, $ionicPlatform) {
 				$scope.imgURI = "data:image/jpeg;base64," + imageData;				
 				$scope.yeni['fotograf'] = $scope.imgURI;
 				
-				$state.go('islemler.hayvanKayit', null, {reload: true});
+				//$state.go('islemler.hayvanKayit', null, {reload: true});
 				
 			}, function (err) {
 				alert(err);
@@ -51,25 +51,34 @@ function ($scope, $state, $stateParams, $cordovaCamera, $http, $ionicPlatform) {
 		$scope.yeniKayitKaydetClick = function() {
 			$scope.islemYapiliyor['yeniKayitKaydetClick'] = true;
 			$http({
-				method: 'POST',
+				method: 'GET',
 				url: 'http://bizimkuzu.com/api/hayvan-kayit',
-				data: $scope.yeni,
 				headers: {
 					"Content-Type": "application/json"				
 				}
 			})
 			.then(function (success) {
-				$scope.islemYapiliyor['yeniKayitKaydetClick'] = false;
-				if (success.data.result == 'success') {
-					alert('Kayıt başarılı.');
-					$scope.yeniKayitVazgecClick();
-				} else {
+				$http({
+					method: 'POST',
+					url: 'http://bizimkuzu.com/api/hayvan-kayit',
+					data: $scope.yeni,
+					headers: {
+						"Content-Type": "application/json"				
+					}
+				})
+				.then(function (success) {
+					$scope.islemYapiliyor['yeniKayitKaydetClick'] = false;
+					if (success.data.result == 'success') {
+						alert('Kayıt başarılı.');
+						$scope.yeniKayitVazgecClick();
+					} else {
+						alert('Kayıt edilemedi. Tekrar deneyin.');
+					}
+				}, function (error) {
+					$scope.islemYapiliyor['yeniKayitKaydetClick'] = false;
 					alert('Kayıt edilemedi. Tekrar deneyin.');
-				}
-			}, function (error) {
-				$scope.islemYapiliyor['yeniKayitKaydetClick'] = false;
-				alert('Kayıt edilemedi. Tekrar deneyin.');
-				console.log(error);
+					console.log(error);
+				});
 			});		
 		}
 		
