@@ -14,7 +14,7 @@
 				</div>
 			</ion-item>
 		
-			<ion-item ng-repeat="hayvan in data.hayvanListesi | filter:{'kupeNo': bulKupeNo}:true" class="item-thumbnail-left">
+			<ion-item ng-repeat="hayvan in data.hayvanListesi | filter:{kupeNo: bulKupeNo}:true" class="item-thumbnail-left">
 				<img ng-src="http://bizimkuzu.com/api/{{hayvan.fotograf}}" />
 				<h2>
 					<strong>Küpe No:</strong> {{hayvan.kupeNo}}</h2>

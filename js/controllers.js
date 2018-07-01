@@ -7,10 +7,19 @@ function ($scope, $state, $stateParams, $cordovaCamera, $http, $ionicPlatform) {
 	
 		$scope.islemYapiliyor = [];
 
-		$scope.irklar = [
-			{ 'irkID': 1, 'irkAdi': 'Merinos'},
-			{ 'irkID': 2, 'irkAdi': 'Kara Koyun'},
-		];
+		$scope.irklar = [];
+		$http({
+			method: 'GET',
+			url: 'http://bizimkuzu.com/api/irk-listesi',
+			headers: {
+				"Content-Type": "application/json"				
+			}			
+		})
+		.then(function (response) {		
+			if (response.data.result == 'success') {
+				$scope.irklar = response.data.data;
+			}		
+		});	
 		
 		$scope.cihazID = 0;
 		
@@ -101,6 +110,7 @@ function ($scope, $stateParams, $http) {
 
 	$scope.data = [];
 	$scope.islemYapiliyor = [];	
+	$scope.bulKupeNo = '';
 	
 	$scope.hayvanListesiYenileClick = function() {
 		$scope.islemYapiliyor['hayvanListesi'] = true;
