@@ -1,20 +1,9 @@
 angular.module('app.controllers', [])
   
-.controller('hayvanKayitCtrl', ['$scope', '$stateParams', '$cordovaCamera', '$http', '$ionicPlatform',
-function ($scope, $stateParams, $cordovaCamera, $http, $ionicPlatform) {
+.controller('hayvanKayitCtrl', ['$scope', '$state', '$stateParams', '$cordovaCamera', '$http', '$ionicPlatform',
+function ($scope, $state, $stateParams, $cordovaCamera, $http, $ionicPlatform) {
 	
-	$ionicPlatform.ready(function() {	
-		
-		$http({
-			method: 'GET',
-			url: 'http://bizimkuzu.com/api/info',
-			headers: {
-				"Content-Type": "application/json"				
-			}			
-		})
-		.then(function (success) {		
-		
-		});	
+	$ionicPlatform.ready(function() {
 	
 		$scope.islemYapiliyor = [];
 
@@ -40,8 +29,8 @@ function ($scope, $stateParams, $cordovaCamera, $http, $ionicPlatform) {
 				quality: 75,
 				destinationType : 0,				
 				allowEdit : true,
-				targetWidth: 1024,
-				targetHeight: 1024,								
+				targetWidth: 512,
+				targetHeight: 512,								
 				destinationType: Camera.DestinationType.DATA_URL,
 				sourceType: Camera.PictureSourceType.CAMERA,				
 				encodingType: Camera.EncodingType.JPEG,				
@@ -50,7 +39,14 @@ function ($scope, $stateParams, $cordovaCamera, $http, $ionicPlatform) {
 			};
 			$cordovaCamera.getPicture(options).then(function (imageData) {
 				$scope.imgURI = "data:image/jpeg;base64," + imageData;				
-				$scope.yeni.fotograf = $scope.imgURI;
+				$scope.yeni['fotograf'] = $scope.imgURI;
+				
+				$state.transitionTo($state.current, $stateParams, {
+					reload: true,
+					inherit: false,
+					notify: true
+				});
+				
 			}, function (err) {
 				alert(err);
 			});
