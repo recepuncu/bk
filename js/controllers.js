@@ -41,11 +41,7 @@ function ($scope, $state, $stateParams, $cordovaCamera, $http, $ionicPlatform) {
 				$scope.imgURI = "data:image/jpeg;base64," + imageData;				
 				$scope.yeni['fotograf'] = $scope.imgURI;
 				
-				$state.transitionTo($state.current, $stateParams, {
-					reload: true,
-					inherit: false,
-					notify: true
-				});
+				$state.go('islemler.hayvanKayit', null, {reload: true});
 				
 			}, function (err) {
 				alert(err);
