@@ -26,11 +26,11 @@ function ($scope, $state, $stateParams, $cordovaCamera, $http, $ionicPlatform) {
 	
 		$scope.yeniKayitFotografCek = function () {
 			var options = {
-				quality: 75,
+				quality: 80,
 				destinationType : 0,				
 				allowEdit : true,
-				targetWidth: 512,
-				targetHeight: 512,								
+				targetWidth: 1024,
+				targetHeight: 1024,								
 				destinationType: Camera.DestinationType.DATA_URL,
 				sourceType: Camera.PictureSourceType.CAMERA,				
 				encodingType: Camera.EncodingType.JPEG,				

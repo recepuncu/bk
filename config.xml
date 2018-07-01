@@ -7,6 +7,8 @@
     <author email="recepuncu@gmail.com" href="https://github.com/recepuncu">
         Recep UNCU
     </author>
+	<preference name="SplashScreen" value="screen" />
+	<preference name="SplashScreenDelay" value="4000"/>
     <platform name="android">
 		<allow-intent href="market:*" />
         <icon density="ldpi" src="res/icons/android/drawable-ldpi-icon.png" />
