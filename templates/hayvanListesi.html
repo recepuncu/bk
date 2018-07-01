@@ -2,8 +2,8 @@
 	<ion-content padding="true" class="has-header">
 	
 		<ion-refresher on-refresh="hayvanListesiYenileClick()"></ion-refresher>
-		<ion-spinner ng-show="islemYapiliyor['hayvanListesi']"></ion-spinner>
-		<ion-list id="hayvanListesi-list2">
+		
+		<ion-list>
 			
 			<ion-item>
 				<div class="list">
@@ -14,10 +14,9 @@
 				</div>
 			</ion-item>
 		
-			<ion-item ng-repeat="hayvan in data.hayvanListesi | filter:{kupeNo: bulKupeNo}:true" class="item-thumbnail-left">
+			<ion-item ng-repeat="hayvan in data.hayvanListesi | filter:{'kupeNo': bulKupeNo}:true" class="item-thumbnail-left">
 				<img ng-src="http://bizimkuzu.com/api/{{hayvan.fotograf}}" />
-				<h2>
-					<strong>Küpe No:</strong> {{hayvan.kupeNo}}</h2>
+				<h2><strong>Küpe No:</strong> {{hayvan.kupeNo}}</h2>
 				<p>
 					<span style="display: block;">
 						<strong>Anne:</strong> {{hayvan.anneKupeNo}}</span>
@@ -29,5 +28,6 @@
 			</ion-item>      
 
 		</ion-list>
+		
 	</ion-content>
 </ion-view>

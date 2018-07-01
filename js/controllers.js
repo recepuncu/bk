@@ -109,8 +109,7 @@ function ($scope, $state, $stateParams, $cordovaCamera, $http, $ionicPlatform) {
 function ($scope, $stateParams, $http) {
 
 	$scope.data = [];
-	$scope.islemYapiliyor = [];	
-	$scope.bulKupeNo = '';
+	$scope.islemYapiliyor = [];
 	
 	$scope.hayvanListesiYenileClick = function() {
 		$scope.islemYapiliyor['hayvanListesi'] = true;
