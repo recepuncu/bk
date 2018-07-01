@@ -83,15 +83,12 @@ function ($scope, $state, $stateParams, $cordovaCamera, $http, $ionicPlatform) {
 		}
 		
 		$scope.yeniKayitVazgecClick = function() {
-			$scope.yeni = {
-				'kupeNo': '',
-				'anneKupeNo': '',
-				'irkID': '',
-				'dogumTarihi': '',
-				'kilo': '',
-				'fotograf': '',
-				'cihazID': $scope.cihazID
-			};
+			$scope.yeni.kupeNo = '';
+			$scope.yeni.anneKupeNo = '';
+			$scope.yeni.irkID = '';
+			$scope.yeni.dogumTarihi = '';
+			$scope.yeni.kilo = '';
+			$scope.yeni.fotograf = '';
 			$scope.imgURI = null;
 		}
 	
