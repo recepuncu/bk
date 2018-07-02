@@ -110,6 +110,13 @@ function ($scope, $stateParams, $http) {
 
 	$scope.data = [];
 	$scope.islemYapiliyor = [];
+	$scope.input = {};
+	
+	$scope.kupeNoBul = function(prop, val) {
+		return function(item) {
+			if (item[prop] == val) return true;
+		}
+	}
 	
 	$scope.hayvanListesiYenileClick = function() {
 		$scope.islemYapiliyor['hayvanListesi'] = true;

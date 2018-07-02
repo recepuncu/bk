@@ -8,13 +8,13 @@
 			<ion-item>
 				<div class="list">
 				  <label class="item item-input item-stacked-label">
-					<span class="input-label">Küpe Numarası ile ara</span>
-					<input ng-model="bulKupeNo" type="text" placeholder="Küpe numarasını buraya girin." />
+					<span class="input-label">Küpe Numarası ile ara {{bulKupeNo}}</span>
+					<input ng-model="input.bulKupeNo" type="text" placeholder="Küpe numarasını buraya girin." />
 				  </label>
 				</div>
 			</ion-item>
 		
-			<ion-item ng-repeat="hayvan in data.hayvanListesi | filter:{'kupeNo': bulKupeNo}:true" class="item-thumbnail-left">
+			<ion-item ng-repeat="hayvan in data.hayvanListesi | filter:{'kupeNo': input.bulKupeNo}" class="item-thumbnail-left">
 				<img ng-src="http://bizimkuzu.com/api/{{hayvan.fotograf}}" />
 				<h2><strong>Küpe No:</strong> {{hayvan.kupeNo}}</h2>
 				<p>
